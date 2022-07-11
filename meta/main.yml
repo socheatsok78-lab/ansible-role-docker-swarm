@@ -1,7 +1,7 @@
 dependencies: []
 
 galaxy_info:
-  role_name: docker_swarm
+  role_name: docker-swarm
   author: socheatsok78
   description: Docker for Linux.
   company: "Soramitsu (Khmer) Co.,LTD"
