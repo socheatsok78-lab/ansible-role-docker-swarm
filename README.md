@@ -11,7 +11,7 @@ docker_swarm_worker_group: 'docker_swarm_workers'
 
 ## Use with Ansible (and docker Python library)
 
-Many users of this role wish to also use Ansible to then build Docker images and manage Docker containers on the server where Docker is installed. In this case, you can easily add in the docker Python library using the geerlingguy.pip role:
+Example:
 
 ```yml
 - hosts: all
@@ -22,6 +22,6 @@ Many users of this role wish to also use Ansible to then build Docker images and
       - name: jsondiff
 
   roles:
-    - soramitsukhmer.pip
-    - soramitsukhmer.docker
+    - soramitsukhmer-lab.pip
+    - soramitsukhmer-lab.docker
 ```
