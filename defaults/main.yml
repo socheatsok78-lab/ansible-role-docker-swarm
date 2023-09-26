@@ -1,2 +1,5 @@
-docker_swarm_manager_group: 'docker_swarm_managers'
-docker_swarm_worker_group: 'docker_swarm_workers'
+docker_swarm_manager_group: "docker_swarm_managers"
+docker_swarm_worker_group: "docker_swarm_workers"
+
+# Docker Swarm Advertise Address
+advertise_addr: "{{ ansible_host }}"
