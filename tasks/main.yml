@@ -2,7 +2,7 @@
 - name: Init swarm on the first node
   community.general.docker_swarm:
     state: present
-    advertise_addr: "{{ ansible_host }}"
+    advertise_addr: "{{ advertise_addr }}"
   register: result
   when: inventory_hostname == groups[docker_swarm_manager_group][0]
 
@@ -18,7 +18,7 @@
   community.general.docker_swarm:
     state: join
     join_token: "{{ join_token_manager }}"
-    advertise_addr: "{{ ansible_host }}"
+    advertise_addr: "{{ advertise_addr }}"
     remote_addrs: "{{ hostvars[groups[docker_swarm_manager_group][0]]['ansible_default_ipv4']['address'] }}"
   when:
     - inventory_hostname in groups[docker_swarm_manager_group]
@@ -28,7 +28,7 @@
   community.general.docker_swarm:
     state: join
     join_token: "{{ join_token_worker }}"
-    advertise_addr: "{{ ansible_host }}"
+    advertise_addr: "{{ advertise_addr }}"
     remote_addrs: "{{ hostvars[groups[docker_swarm_manager_group][0]]['ansible_default_ipv4']['address'] }}"
   when:
     - inventory_hostname in groups[docker_swarm_worker_group]
