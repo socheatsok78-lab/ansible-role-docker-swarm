@@ -15,7 +15,7 @@ docker_swarm_state: present
 # It is also possible to specify a network interface to listen on that interface's address; for example --listen-addr eth0:2377.
 # 
 # Specifying a port is optional. If the value is a bare IP address or interface name, the default port 2377 will be used.
-docker_swarm_listen_port: 2377
+docker_swarm_listen_port: "2377"
 docker_swarm_listen_addr: "0.0.0.0:{{ docker_swarm_listen_port }}"
 
 # This flag specifies the address that will be advertised to other members of the swarm for API access and overlay networking.
