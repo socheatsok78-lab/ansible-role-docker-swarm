@@ -1,0 +1,21 @@
+- name: Instructing worker nodes to leave the swarm
+  community.general.docker_swarm:
+    state: absent
+    force: true
+  when:
+    - inventory_hostname in groups[docker_swarm_worker_group]
+
+- name: Instructing manager nodes to leave the swarm
+  community.general.docker_swarm:
+    state: absent
+    force: true
+  when:
+    - inventory_hostname in groups[docker_swarm_manager_group]
+    - inventory_hostname != groups[docker_swarm_manager_group][0]
+
+- name: Instructing the first manager node to leave the swarm
+  community.general.docker_swarm:
+    state: absent
+    force: true
+  register: result
+  when: inventory_hostname == groups[docker_swarm_manager_group][0]
