@@ -25,7 +25,7 @@
     advertise_addr: "{{ docker_swarm_advertise_addr }}"
     data_path_addr: "{{ docker_swarm_data_path_addr }}"
     data_path_port: "{{ docker_swarm_data_path_port }}"
-    remote_addrs: "{{ hostvars[groups[docker_swarm_manager_group][0]]['ansible_default_ipv4']['address'] }}"
+    remote_addrs: "{{ hostvars[groups[docker_swarm_manager_group][0]]['ansible_default_ipv4']['address'] }}:{{ docker_swarm_listen_port }}"
   when:
     - inventory_hostname in groups[docker_swarm_manager_group]
     - inventory_hostname != groups[docker_swarm_manager_group][0]
@@ -38,6 +38,6 @@
     advertise_addr: "{{ docker_swarm_advertise_addr }}"
     data_path_addr: "{{ docker_swarm_data_path_addr }}"
     data_path_port: "{{ docker_swarm_data_path_port }}"
-    remote_addrs: "{{ hostvars[groups[docker_swarm_manager_group][0]]['ansible_default_ipv4']['address'] }}"
+    remote_addrs: "{{ hostvars[groups[docker_swarm_manager_group][0]]['ansible_default_ipv4']['address'] }}:{{ docker_swarm_listen_port }}"
   when:
     - inventory_hostname in groups[docker_swarm_worker_group]
