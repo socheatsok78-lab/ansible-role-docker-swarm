@@ -2,6 +2,7 @@
 - name: Init swarm on the first node
   community.general.docker_swarm:
     state: present
+    listen_addr: "{{ docker_swarm_listen_addr }}"
     advertise_addr: "{{ docker_swarm_advertise_addr }}"
     data_path_addr: "{{ docker_swarm_data_path_addr }}"
     data_path_port: "{{ docker_swarm_data_path_port }}"
@@ -20,6 +21,7 @@
   community.general.docker_swarm:
     state: join
     join_token: "{{ join_token_manager }}"
+    listen_addr: "{{ docker_swarm_listen_addr }}"
     advertise_addr: "{{ docker_swarm_advertise_addr }}"
     data_path_addr: "{{ docker_swarm_data_path_addr }}"
     data_path_port: "{{ docker_swarm_data_path_port }}"
@@ -32,6 +34,7 @@
   community.general.docker_swarm:
     state: join
     join_token: "{{ join_token_worker }}"
+    listen_addr: "{{ docker_swarm_listen_addr }}"
     advertise_addr: "{{ docker_swarm_advertise_addr }}"
     data_path_addr: "{{ docker_swarm_data_path_addr }}"
     data_path_port: "{{ docker_swarm_data_path_port }}"

@@ -10,6 +10,13 @@ docker_swarm_worker_group: "docker_swarm_workers"
 # community.docker.docker_node can be used to demote a manager before removal.
 docker_swarm_state: present
 
+# The node listens for inbound swarm manager traffic on this address.
+# The default is to listen on 0.0.0.0:2377.
+# It is also possible to specify a network interface to listen on that interface's address; for example --listen-addr eth0:2377.
+# 
+# Specifying a port is optional. If the value is a bare IP address or interface name, the default port 2377 will be used.
+docker_swarm_listen_addr: "0.0.0.0:2377"
+
 # This flag specifies the address that will be advertised to other members of the swarm for API access and overlay networking.
 # If unspecified, Docker will check if the system has a single IP address, and use that IP address with the listening port (see --listen-addr).
 # If the system has multiple IP addresses, --advertise-addr must be specified so that the correct address is chosen for inter-manager
