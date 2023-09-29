@@ -1,5 +1,31 @@
+# Ansible inventory group
 docker_swarm_manager_group: "docker_swarm_managers"
 docker_swarm_worker_group: "docker_swarm_workers"
 
-# Docker Swarm Advertise Address
-advertise_addr: "{{ ansible_host }}"
+# Choices:
+# - "present" ← (default) to create/update a new cluster
+# - "remove" to teardown the existing cluster
+# 
+# Set to remove, to remove an absent node from the cluster. Note that removing requires Docker SDK for Python >= 2.4.0.
+# community.docker.docker_node can be used to demote a manager before removal.
+docker_swarm_state: present
+
+# This flag specifies the address that will be advertised to other members of the swarm for API access and overlay networking.
+# If unspecified, Docker will check if the system has a single IP address, and use that IP address with the listening port (see --listen-addr).
+# If the system has multiple IP addresses, --advertise-addr must be specified so that the correct address is chosen for inter-manager
+# communication and overlay networking.
+# 
+# It is also possible to specify a network interface to advertise that interface's address; for example --advertise-addr eth0:2377.
+# 
+# Specifying a port is optional. If the value is a bare IP address or interface name, the default port 2377 will be used.
+docker_swarm_advertise_addr: "{{ ansible_host }}"
+
+# This flag specifies the address that global scope network drivers will publish towards other nodes in order to reach the containers running on this node. 
+# Using this parameter it is then possible to separate the container's data traffic from the management traffic of the cluster.
+# If unspecified, Docker will use the same IP address or interface that is used for the advertise address.
+docker_swarm_data_path_addr:
+
+# This flag allows you to configure the UDP port number to use for data path traffic. 
+# The provided port number must be within the 1024 - 49151 range. If this flag is not set or is set to 0, the default port number 4789 is used.
+# The data path port can only be configured when initializing the swarm, and applies to all nodes that join the swarm.
+docker_swarm_data_path_port:
