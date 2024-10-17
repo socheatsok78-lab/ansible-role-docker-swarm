@@ -22,6 +22,6 @@ Example:
       - name: jsondiff
 
   roles:
-    - soramitsukhmer-lab.pip
-    - soramitsukhmer-lab.docker
+    - socheatsok78-lab.pip
+    - socheatsok78-lab.docker
 ```
