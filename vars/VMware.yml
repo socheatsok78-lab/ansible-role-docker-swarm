@@ -7,4 +7,4 @@
 # 
 # https://portal.portainer.io/knowledge/known-issues-with-vmware
 ---
-var_docker_swarm_data_path_port: 9789
+var_docker_swarm_data_path_port: "9789"
