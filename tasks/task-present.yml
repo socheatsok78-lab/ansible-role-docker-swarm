@@ -4,8 +4,8 @@
     state: present
     listen_addr: "{{ docker_swarm_listen_addr }}"
     advertise_addr: "{{ docker_swarm_advertise_addr }}"
-    data_path_addr: "{{ docker_swarm_data_path_addr }}"
-    data_path_port: "{{ docker_swarm_data_path_port | default(var_docker_swarm_data_path_port) }}"
+    data_path_addr: "{{ docker_swarm_data_path_addr | default(omit) }}"
+    data_path_port: "{{ (docker_swarm_data_path_port | default(var_docker_swarm_data_path_port, omit)) | int }}"
   register: result
   when: inventory_hostname == groups[docker_swarm_manager_group][0]
 
@@ -23,8 +23,8 @@
     join_token: "{{ join_token_manager }}"
     listen_addr: "{{ docker_swarm_listen_addr }}"
     advertise_addr: "{{ docker_swarm_advertise_addr }}"
-    data_path_addr: "{{ docker_swarm_data_path_addr }}"
-    data_path_port: "{{ docker_swarm_data_path_port | default(var_docker_swarm_data_path_port) }}"
+    data_path_addr: "{{ docker_swarm_data_path_addr | default(omit) }}"
+    data_path_port: "{{ (docker_swarm_data_path_port | default(var_docker_swarm_data_path_port, omit)) | int }}"
     remote_addrs: "{{ hostvars[groups[docker_swarm_manager_group][0]]['ansible_default_ipv4']['address'] }}:{{ docker_swarm_listen_port }}"
   when:
     - inventory_hostname in groups[docker_swarm_manager_group]
@@ -36,8 +36,8 @@
     join_token: "{{ join_token_worker }}"
     listen_addr: "{{ docker_swarm_listen_addr }}"
     advertise_addr: "{{ docker_swarm_advertise_addr }}"
-    data_path_addr: "{{ docker_swarm_data_path_addr }}"
-    data_path_port: "{{ docker_swarm_data_path_port | default(var_docker_swarm_data_path_port) }}"
+    data_path_addr: "{{ docker_swarm_data_path_addr | default(omit) }}"
+    data_path_port: "{{ (docker_swarm_data_path_port | default(var_docker_swarm_data_path_port, omit)) | int }}"
     remote_addrs: "{{ hostvars[groups[docker_swarm_manager_group][0]]['ansible_default_ipv4']['address'] }}:{{ docker_swarm_listen_port }}"
   when:
     - inventory_hostname in groups[docker_swarm_worker_group]
