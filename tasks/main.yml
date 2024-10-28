@@ -12,7 +12,7 @@
 - name: Assert that the "docker_swarm_managers" and "docker_swarm_workers" inventory groups are defined.
   fail:
     msg: "The 'docker_swarm_managers' and 'docker_swarm_workers' inventory groups are required."
-  when: docker_swarm_managers is not defined or docker_swarm_workers is not defined
+  when: groups[docker_swarm_manager_group] is not defined or groups[docker_swarm_worker_group] is not defined
 
 - include_tasks: task-present.yml
   when: docker_swarm_state == 'present'
