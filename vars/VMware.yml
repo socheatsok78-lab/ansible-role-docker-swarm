@@ -1,0 +1,10 @@
+# Overlay networking and NSX
+
+# If you are running NSX on your VMware environment you will likely run into issues with Docker's overlay networking.
+# In particular, overlay networking uses UDP port 4789 by default which conflicts with VMware NSX's communication port for VXLAN.
+#
+# To resolve this, you can change the data path port for your Docker Swarm setup to a different value (for example, 9789):
+# 
+# https://portal.portainer.io/knowledge/known-issues-with-vmware
+---
+var_docker_swarm_data_path_port: 9789

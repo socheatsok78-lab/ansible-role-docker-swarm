@@ -1,4 +1,14 @@
 ---
+- name: Load Virtualization Type specific vars.
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - '{{ansible_virtualization_type}}.yml'
+        - main.yml
+      paths:
+        - 'vars'
+
 - include_tasks: task-present.yml
   when: docker_swarm_state == 'present'
 
