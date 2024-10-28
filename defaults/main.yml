@@ -16,7 +16,7 @@ docker_swarm_state: present
 # 
 # Specifying a port is optional. If the value is a bare IP address or interface name, the default port 2377 will be used.
 docker_swarm_listen_port: "2377"
-docker_swarm_listen_addr: "0.0.0.0:{{ docker_swarm_listen_port }}"
+docker_swarm_listen_addr: "{{ ansible_host }}:{{ docker_swarm_listen_port }}"
 
 # This flag specifies the address that will be advertised to other members of the swarm for API access and overlay networking.
 # If unspecified, Docker will check if the system has a single IP address, and use that IP address with the listening port (see --listen-addr).
